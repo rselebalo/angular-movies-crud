@@ -6,5 +6,4 @@ build/
 .serverless/
 tmp/
 temp/
-env.yml
 yarn-error.log
