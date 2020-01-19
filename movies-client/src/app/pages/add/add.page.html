@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Movie</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form
+    [formGroup]="movieForm"
+    (ngSubmit)="onFormSubmit()"
+    *ngIf="isLoadingResults"
+  >
+    <ion-item>
+      <ion-label>Title</ion-label>
+      <ion-input type="text" formControlName="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Overview</ion-label>
+      <ion-textarea formControlName="overview" rows="4"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Genre</ion-label>
+      <ion-input formControlName="genre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Release Date</ion-label>
+      <ion-datetime formControlName="release_date"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Rating</ion-label>
+      <ion-input formControlName="rating"></ion-input>
+    </ion-item>
+    <br />
+    <ion-button
+      type="submit"
+      shape="round"
+      color="primary"
+      expand="block"
+      [disabled]="!movieForm.valid"
+    >
+      Submit
+    </ion-button>
+  </form>
+</ion-content>

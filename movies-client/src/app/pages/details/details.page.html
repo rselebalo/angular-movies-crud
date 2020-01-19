@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Movie Details
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card tappable class="cards-bg">
+    <img src="assets/images/movies.jpeg" />
+    <ion-card-content>
+      <ion-card-title>
+        {{movie.title}}
+      </ion-card-title>
+      <br />
+      <ion-card-subtitle>
+       
+          <p>
+            Genre: {{movie.genre}}
+          </p>
+          <p>
+            Released: {{movie.release_date}}
+          </p>
+          <p>
+            Rating: {{movie.rating}}
+          </p>
+      </ion-card-subtitle>
+      <br/>
+      <p>
+        {{movie.overview}}
+      </p>
+    </ion-card-content>
+    <ion-footer>
+      <ion-item lines="none">
+        <ion-button fill="outline" slot="end" (click)="editMovie(movie.id)"
+          >Edit</ion-button
+        >
+        <ion-button
+          fill="outline"
+          slot="end"
+          color="danger"
+          (click)="deleteMovie(movie.id)"
+          >Delete</ion-button
+        >
+      </ion-item>
+    </ion-footer>
+  </ion-card>
+</ion-content>
