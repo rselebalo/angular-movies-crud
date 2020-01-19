@@ -1,0 +1,25 @@
+{
+  "name": "movies-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migration:generate": "ts-node $(npm bin)/typeorm migration:generate -n migration",
+    "migration:run": "ts-node $(npm bin)/typeorm migration:run "
+  },
+  "author": "Rethabile Selebalo",
+  "license": "ISC",
+  "dependencies": {
+    "@types/lodash": "^4.14.149",
+    "@types/pg": "^7.14.1",
+    "dotenv": "^8.2.0",
+    "lodash": "^4.17.15",
+    "pg": "^7.17.1",
+    "reflect-metadata": "^0.1.13",
+    "serverless-offline": "^5.12.1",
+    "serverless-plugin-typescript": "^1.1.9",
+    "typeorm": "^0.2.22",
+    "typescript": "^3.7.4"
+  }
+}

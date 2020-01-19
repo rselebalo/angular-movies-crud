@@ -1,0 +1,85 @@
+# NOTE: update this with your service name
+service: movies-api
+
+package:
+  individually: true
+
+plugins:
+  #- serverless-webpack
+  - serverless-plugin-typescript
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, 'dev'}
+  region: eu-west-1
+  environment: ${file(env.yml)}
+  enterpriseDisabled: true
+  trackingDisabled: true
+  iamRoleStatementsName: ${self:service}-${self:provider.stage}-AuroraCRUD-role
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "rds-data:ExecuteStatement"
+        - "rds-data:BatchExecuteStatement"
+        - "rds-data:BeginTransaction"
+        - "rds-data:CommitTransaction"
+        - "rds-data:ExecuteStatement"
+        - "rds-data:RollbackTransaction"
+      Resource: "*"
+    - Effect: Allow
+      Action:
+        - secretsmanager:GetSecretValue
+      Resource: "arn:aws:secretsmanager:*"
+
+functions:
+  getMovie:
+    handler: src/functions/getMovie.handler
+    events:
+      - http:
+          path: movie/{id}
+          method: get
+          cors:
+            origins:
+              - "*"
+
+  getMovies:
+    handler: src/functions/getMovies.handler
+    events:
+      - http:
+          path: movie
+          method: get
+          cors:
+            origins:
+              - "*"
+
+  updateMovie:
+    handler: src/functions/updateMovie.handler
+    events:
+      - http:
+          path: movie/{id}/ # path will be domain.name.com/movie/102589647
+          method: put
+          cors:
+            origins:
+              - "*"
+
+  createMovie:
+    handler: src/functions/createMovie.handler
+    events:
+      - http:
+          path: movie
+          method: post
+          cors:
+            origins:
+              - "*"
+
+  deleteMovie:
+    handler: src/functions/deleteMovie.handler
+    events:
+      - http:
+          path: movie/{id}
+          method: delete
+          cors:
+            origins:
+              - "*"
